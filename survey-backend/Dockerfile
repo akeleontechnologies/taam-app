@@ -25,7 +25,7 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/static /app/media /app/media/uploads
+RUN mkdir -p /app/static /app/media /app/media/uploads /app/media/database
 
 # Collect static files
 RUN python manage.py collectstatic --noinput || true
