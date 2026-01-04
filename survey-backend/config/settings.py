@@ -175,6 +175,16 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
 }
 
+# Database Configuration (SQLite)
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "media/database/db.sqlite3",
+    }
+}
+
+STATIC_ROOT = BASE_DIR / 'static'
+
 # Deployment Environment Configuration
 if DeploymentEnvironment.from_value(DEPLOYMENT_ENV) == DeploymentEnvironment.PROD:
     USE_X_FORWARDED_HOST = True
@@ -187,32 +197,9 @@ if DeploymentEnvironment.from_value(DEPLOYMENT_ENV) == DeploymentEnvironment.PRO
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     
-    # Production Database (PostgreSQL)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME', default='django_appmanager'),
-            'USER': env('DB_USER', default='postgres'),
-            'PASSWORD': env('DB_PASSWORD', default=''),
-            'HOST': env('DB_HOST', default='localhost'),
-            'PORT': env('DB_PORT', default='5432'),
-        }
-    }
-    
-    STATIC_ROOT = BASE_DIR / 'static'
     CORS_ORIGIN_ALLOW_ALL = False
-    
     CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
-    
 else:
-    # Development Database (SQLite)
-    STATIC_ROOT = BASE_DIR / 'static'
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "media/database/dev_db.sqlite3",
-        }
-    }
     CORS_ORIGIN_ALLOW_ALL = True
 
 # Email Configuration
