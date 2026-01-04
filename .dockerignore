@@ -1,0 +1,13 @@
+.env
+.git
+.gitignore
+*.log
+node_modules/
+__pycache__/
+*.pyc
+.next/
+.DS_Store
+certbot/
+nginx/ssl/
+*.md
+!DEPLOYMENT.md
